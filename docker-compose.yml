@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  comfyui:
+    image: yannmichaux/comfyui:latest
+    container_name: comfyui
+    restart: unless-stopped
+    ports:
+      - "8188:8188"
+    volumes:
+      - ./data/input:/app/comfyui/input
+      - ./data/output:/app/comfyui/output
+      - ./data/models:/app/comfyui/models
+      - ./data/user:/app/comfyui/user
+      - ./data/custom_nodes:/app/comfyui/custom_nodes
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
